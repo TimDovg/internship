@@ -1,20 +1,19 @@
 class Universe {
     constructor() {
-        if (Universe.instance) {
+        if (Universe.instance instanceof Universe) {
             return Universe.instance;
         }
 
-        const instance = {
-            size: 300,
-            getSize: function () {
-                return this.size;
-            },
-            setSize: function (value) {
-                return this.size = value;
-            }
-        };
+        this.size = 300;
+        Universe.instance = this;
+    }
 
-        return Universe.instance = instance;
+    getSize() {
+        return this.size;
+    }
+
+    setSize(value) {
+        return this.size = value;
     }
 }
 
