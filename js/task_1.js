@@ -4,18 +4,17 @@ class Universe {
             return Universe.instance;
         }
 
-        Universe.instance = {};
-        Universe.instance.size = 300;
-        Object.setPrototypeOf(Universe.instance, Universe.prototype);
-        return Universe.instance;
-    }
+        const instance = {
+            size: 300,
+            getSize: function () {
+                return this.size;
+            },
+            setSize: function (value) {
+                return this.size = value;
+            }
+        };
 
-    getSize() {
-        return this.size;
-    }
-
-    setSize(value) {
-        return this.size = value;
+        return Universe.instance = instance;
     }
 }
 
