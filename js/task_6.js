@@ -1,11 +1,11 @@
-const getResolvedPromise = url => {
-    fetch(url)
-        .then(({status}) => {
-            if (status > 300) {
-                console.log(new Error(`error: status > 300`));
-            }
+const getResolvedPromise = value => Promise.resolve(value)
+    .then(value => {
+        if (value > 300) {
+            console.log(new Error(`error: value > 300`));
+        }
 
-            console.log(`Promise done`);
+        console.log(`Promise done`);
+
+        return value;
     })
-    ;
-};
+;
