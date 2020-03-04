@@ -1,19 +1,15 @@
 Array.prototype.duplicate = function() {
-    return [...this];
+    return [...this, ...this];
 };
 
 Function.prototype.call = function (obj, ...args) {
-    obj.func = this;
-    return obj.func(...args);
+    return this.apply(obj, args);
 };
 
 Function.prototype.apply = function (obj, args) {
-    obj.func = this;
-    return obj.func(...args);
+    return this.call(obj, ...args);
 };
 
 Function.prototype.bind = function (obj) {
-    const myFunction = this;
-
-    return (...args) => (() => myFunction.apply(obj, args))();
+    return (...args) => (() => this.apply(obj, args))();
 };
