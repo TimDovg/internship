@@ -6,6 +6,6 @@ const getResolvedPromise = value => Promise.resolve(value)
 
         return value;
     })
-    .catch(console.log)
+    .catch(err => console.log(err))
     .finally(() => console.log(`Promise done`))
 ;
