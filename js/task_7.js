@@ -4,12 +4,12 @@ Array.prototype.duplicate = function() {
 
 Function.prototype.call = function (obj, ...args) {
     obj.func = this;
-    obj.func(...args);
+    return obj.func(...args);
 };
 
 Function.prototype.apply = function (obj, args) {
     obj.func = this;
-    obj.func(...args);
+    return obj.func(...args);
 };
 
 Function.prototype.bind = function (obj) {
