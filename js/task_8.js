@@ -1,11 +1,17 @@
-Object.myCreate = function (objPrototype = null, property = {}) {
-    const createdObj = {};
+Object.myCreate = function (objPrototype = null, objProperty = {}) {
+    class ObjectByMyCreate {
+        constructor(objPrototype, objProperty) {
+            if (objPrototype === null) {
+                this.__proto__ = null;
+            } else {
+                this.__proto__ = objPrototype.__proto__;
+            }
 
-    if (objPrototype === null) {
-        Object.setPrototypeOf(createdObj, null);
-    } else {
-        Object.setPrototypeOf(createdObj, Object.getPrototypeOf(objPrototype));
+            for (let prop in objProperty) {
+                this[prop] = objProperty[prop];
+            }
+        }
     }
-    Object.assign(createdObj, property);
-    return createdObj;
+
+    return new ObjectByMyCreate(objPrototype, objProperty);
 };
