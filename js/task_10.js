@@ -1,1 +1,1 @@
-const transform = str => str.split('.').reverse().reduce((accum, value) => ({[value]: accum}), null);
+const transform = str => str.split('.').reduceRight((accum, value) => ({[value]: accum}), null);
