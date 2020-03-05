@@ -1,17 +1,17 @@
-Object.myCreate = function (objPrototype = null, objProperty = {}) {
-    class ObjectByMyCreate {
-        constructor(objPrototype, objProperty) {
-            if (objPrototype === null) {
-                this.__proto__ = null;
-            } else {
-                this.__proto__ = objPrototype.__proto__;
-            }
+Object.myCreate = (() => {
+    function Temp() {}
 
-            for (let prop in objProperty) {
-                this[prop] = objProperty[prop];
+    return (objPrototype = null, objProperty = {}) => {
+        Temp.prototype = objPrototype;
+        const obj = new Temp();
+        Temp.prototype = null;
+
+        for (let prop in objProperty) {
+            if (objProperty.hasOwnProperty(prop)) {
+                obj[prop] = objProperty[prop];
             }
         }
-    }
 
-    return new ObjectByMyCreate(objPrototype, objProperty);
-};
+        return obj;
+    };
+})();
