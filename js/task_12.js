@@ -1,22 +1,11 @@
 const anagrams = arr => {
-    const clone = [...arr].map(str => str.split('').sort().join(''));
-    const result = [];
+    const objWithAnagrams = {};
+    new Set([...input].map(str => str.split('').sort().join('')))
+        .forEach(str => objWithAnagrams[str] = []);
 
-    for (let i = 0; i < clone.length; i++) {
-        if (clone[i] === null) continue;
-        const tmp = [arr[i]];
+    arr.forEach(el => objWithAnagrams[el.split('').sort().join('')].push(el));
 
-        for (let j = i + 1; j < clone.length; j++) {
-            if (clone[i] === clone[j]) {
-                tmp.push(arr[j]);
-                clone[j] = null;
-            }
-        }
-
-        result.push(tmp);
-    }
-
-    return result;
+    return Object.values(objWithAnagrams);
 };
 
 const input = [
