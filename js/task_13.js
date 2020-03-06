@@ -1,7 +1,7 @@
 const sum = a => {
     let count = a;
     const func = b => {
-        if (b === undefined) return count;
+        if (!b) return count;
 
         count += b;
 
